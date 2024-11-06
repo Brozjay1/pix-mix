@@ -30,7 +30,7 @@ jobs:
       - name: Build the Docker Image
         env:
           image_name: test-image
-          username: monyslim
+          username: brozjay
           APP_VERSION: ${{ steps.version.outputs.version }}
         run: |
           docker build -t $username/$image_name:${{ env.APP_VERSION }} .
@@ -44,7 +44,7 @@ jobs:
       - name: Push Docker Image to Docker Hub
         env: 
           image_name: test-image
-          username: monyslim
+          username: brozjay
           APP_VERSION: ${{ steps.version.outputs.version }}
         run: |   
           docker push $username/$image_name:${{ env.APP_VERSION }}
@@ -55,11 +55,11 @@ jobs:
             server_address: smtp.gmail.com
             server_port: 465
             secure: true
-            username: prcenturionboy@gmail.com
+            username: afolabiabayomijohn@gmail.com
             password: ${{ secrets.EMAIL_PASSWORD }}
             subject: "Docker Image Deployed"
-            to: "dewcapontaareh@gmail.com"
-            from: "prcenturionboy@gmail.com"
+            to: "afolabiyomi20@gmail.com"
+            from: "afolabiabayomijohn@gmail.com"
             body: |
               Hello,
               The latest version of the Docker image (version: ${{ steps.version.outputs.version }}) has been built.
@@ -79,7 +79,7 @@ jobs:
       - name: Pull and Deploy Docker Image
         env: 
           image_name: test-image
-          username: monyslim
+          username: brozjay
           APP_VERSION: ${{ needs.Build.outputs.app_version }}
         run: |
           docker pull $username/$image_name:${{ env.APP_VERSION }}
@@ -87,7 +87,7 @@ jobs:
       - name: Run Docker Container
         env:
           image_name: test-image
-          username: monyslim
+          username: brozjay
           APP_VERSION: ${{ needs.Build.outputs.app_version }}
         run: |
           docker run -d -p 8081:80 $username/$image_name:${{ env.APP_VERSION }}
@@ -101,8 +101,8 @@ jobs:
           username: prcenturionboy@gmail.com
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Docker Image Deployed"
-          to: "dewcapontaareh@gmail.com"
-          from: "prcenturionboy@gmail.com"
+          to: "afolabiyomi20@gmail.com"
+          from: "afolabiabayomijohn@gmail.com"
           body: |
             Hello,
             The latest version of the Docker image (version: ${{ needs.Build.outputs.app_version }}) has been deployed.
